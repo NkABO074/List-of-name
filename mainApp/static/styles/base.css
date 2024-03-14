@@ -1,0 +1,23 @@
+/*put some css here :)*/
+body{
+	background-color: antiquewhite;
+}
+
+.Header {
+	background-color: blue;
+	color: rgb(255, 255, 255);
+	padding: 1em;
+
+}
+
+.subheader {
+	margin-top: 0px;
+	background-color: blueviolet;
+	color: rgb(255, 255, 255);
+	padding: 0.1em;
+}
+
+.subheader h2 {
+	margin-top: 1px;
+
+}

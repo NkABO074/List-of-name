@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Inscription{% endblock title %}
+
+{% block content %}
+<h2 id="subtitle">Add a new dude right here</h2>
+
+<div id="popup">
+    <form action="{% url "submit_form" %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Dude</button>
+    </form>
+</div>
+{% endblock content %}

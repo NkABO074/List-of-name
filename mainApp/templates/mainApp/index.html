@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+
+{% block title %}Index{% endblock title %}
+
+{% block content %} 
+    <h2 id="wellcome">Wellcome to the List</h2>
+
+    <form action="{% url "search" %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    <table border="1px"> 
+    {% if latest_Dudes_list.exists %}
+    <th>Name</th><th>Surename</th><th>Age</th><th>telephone</th><th>City</th><th>Postal address</th><th>Adding date</th><th>Delete Dudes</th><th>Update Dudes</th>
+    {% for the_dudes in latest_Dudes_list %}
+        <tr>
+            <td>{{the_dudes.name}}</td>
+            <td>{{the_dudes.surmname}}</td>
+            <td>{{the_dudes.age}}</td>
+            <td>{{the_dudes.telephone}}</td>
+            <td>{{the_dudes.city}}</td>
+            <td>{{the_dudes.postal_address}}</td>
+            <td>{{the_dudes.pub_date}}</td>
+            <td>
+                <form action="{% url 'delete_dude' the_dudes.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+            <td>
+            <form action="{% url 'update' the_dudes.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Update</button>
+            </form>
+            <!--<td><a href="{% url 'update' the_dudes.id %}">Update</a></td>-->
+        </td>
+        </tr>
+    {% endfor %}
+    {% else %}
+    </table>
+        <table border="1px">
+            <!--<th>Name</th><th>Age</th><th>telephone</th><th>City</th>-->
+            <tr>
+                <td colspan="4">No Dudes available</td>
+            </tr>
+        </table>
+    {% endif %}
+    
+    <a href="{% url "inscription" %}">Want to add another dudes? click here</a>
+    
+{% endblock content %}
